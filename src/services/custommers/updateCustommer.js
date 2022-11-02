@@ -8,7 +8,7 @@ import { prisma } from "../../index.js";
 export async function updateCustommer(req, res, next) {
   try {
     const { id } = req.headers;
-    let { name, dept, payed, totalCost } = req.body;
+    let { name, dept, totalCost } = req.body;
     const getCustommer = await prisma.custommers.findUnique({
       where: { id },
     });
@@ -24,9 +24,6 @@ export async function updateCustommer(req, res, next) {
     if (!totalCost) {
       totalCost = getCustommer.totalCost;
     }
-    if (!payed) {
-      payed = getCustommer.payed;
-    }
 
     const custommer = await prisma.custommers.update({
       where: {
@@ -35,7 +32,6 @@ export async function updateCustommer(req, res, next) {
       data: {
         name,
         dept,
-        payed,
         totalCost,
       },
     });
