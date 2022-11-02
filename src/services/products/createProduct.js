@@ -9,6 +9,14 @@ export async function createProduct(req, res, next) {
   try {
     const { name, price, catId } = req.body;
     const img = `/uploads/images/${req.file.filename}`;
+    const getProduct = await prisma.categories.findFirst({
+      where: {
+        id: catId,
+      },
+    });
+    if (!getProduct) {
+      return badRequestResponse(res, "this category doesn't exist");
+    }
     const product = await prisma.products.create({
       data: {
         name,
