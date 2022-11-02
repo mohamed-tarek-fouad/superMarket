@@ -5,15 +5,14 @@ import {
 } from "../../helpers/functions/ResponseHandler.js";
 import { prisma } from "../../index.js";
 
-export async function deleteCart(req, res, next) {
+export async function allCats(req, res, next) {
   try {
-    const { id } = req.body;
-    const cart = await prisma.cart.delete({
-      where: {
-        id,
+    const category = await prisma.categories.findMany({
+      include: {
+        products: true,
       },
     });
-    return okResponse(res, "deleted cart successfully", cart);
+    return okResponse(res, "featched all categories successfully", category);
   } catch (err) {
     next(err);
   }

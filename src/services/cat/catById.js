@@ -5,16 +5,16 @@ import {
 } from "../../helpers/functions/ResponseHandler.js";
 import { prisma } from "../../index.js";
 
-export async function custommerById(req, res, next) {
+export async function catById(req, res, next) {
   try {
     const { id } = req.headers;
-    const custommer = await prisma.custommers.findFirst({
-      where: { id },
+    const category = await prisma.categories.findFirst({
+      where: { id: parseInt(id) },
       include: {
-        cart: true,
+        products: true,
       },
     });
-    return okResponse(res, "featched  custommer successfully", custommer);
+    return okResponse(res, "featched  category successfully", category);
   } catch (err) {
     next(err);
   }

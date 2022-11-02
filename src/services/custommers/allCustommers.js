@@ -9,7 +9,7 @@ export async function allCustommers(req, res, next) {
   try {
     const custommer = await prisma.custommers.findMany({
       include: {
-        Cart: true,
+        cart: true,
       },
     });
     return okResponse(res, "featched all custommers successfully", custommer);

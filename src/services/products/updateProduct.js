@@ -8,7 +8,7 @@ import { prisma } from "../../index.js";
 export async function updateProduct(req, res, next) {
   try {
     const { id } = req.headers;
-    let { name, price, quantity, catId } = req.body;
+    let { name, price, catId } = req.body;
     let img;
     if (req.file) {
       img = `/uploads/images/${req.file.filename}`;
@@ -25,9 +25,7 @@ export async function updateProduct(req, res, next) {
     if (!catId) {
       name = getProduct.name;
     }
-    if (!quantity) {
-      quantity = getProduct.quantity;
-    }
+
     if (!price) {
       price = getProduct.price;
     }
@@ -39,7 +37,6 @@ export async function updateProduct(req, res, next) {
       data: {
         name,
         price,
-        quantity,
         img,
         catId,
       },

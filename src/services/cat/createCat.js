@@ -7,13 +7,13 @@ import { prisma } from "../../index.js";
 
 export async function createCat(req, res, next) {
   try {
-    const { name } = req.body;
-    const cat = await prisma.categories.create({
+    const { cat } = req.body;
+    const category = await prisma.categories.create({
       data: {
-        name,
+        cat,
       },
     });
-    return createdResponse(res, "created cat successfully", cat);
+    return createdResponse(res, "created cat successfully", category);
   } catch (err) {
     next(err);
   }

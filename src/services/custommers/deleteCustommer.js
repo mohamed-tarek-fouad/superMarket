@@ -5,14 +5,11 @@ import {
 } from "../../helpers/functions/ResponseHandler.js";
 import { prisma } from "../../index.js";
 
-export async function custommerById(req, res, next) {
+export async function deleteCustommer(req, res, next) {
   try {
     const { id } = req.headers;
-    const custommer = await prisma.custommers.findFirst({
+    const custommer = await prisma.custommers.delete({
       where: { id },
-      include: {
-        cart: true,
-      },
     });
     return okResponse(res, "featched  custommer successfully", custommer);
   } catch (err) {

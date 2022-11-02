@@ -11,38 +11,30 @@ datasource db {
 }
 
 model Products {
-  id       String     @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  price    Float
-  quantity Float
-  img      String
-  Order    Order[]
-  catId    String     @db.ObjectId
-  cat      Categories @relation(fields: [catId], references: [id])
+  id    String     @id @default(auto()) @map("_id") @db.ObjectId
+  name  String
+  price Float
+  img   String
+  catId String     @db.ObjectId
+  cat   Categories @relation(fields: [catId], references: [id])
 }
 
 model Custommers {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String
-  dept  Float  @default(0)
-  payed Float  @default(0)
-  cart  Cart[]
-}
-
-model Order {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  productId     String   @db.ObjectId
-  product       Products @relation(fields: [productId], references: [id])
-  quantityTaken Float
-  cart          Cart[]
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  dept      Float  @default(0)
+  payed     Float  @default(0)
+  totlaCost Float  @default(0)
+  Cart      Cart[]
 }
 
 model Cart {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
-  orderId     String     @db.ObjectId
-  order       Order      @relation(fields: [orderId], references: [id])
+  product     String
+  cost        Float
   custommerId String     @db.ObjectId
   custommer   Custommers @relation(fields: [custommerId], references: [id])
+  date        DateTime   @default(now())
 }
 
 model Categories {
