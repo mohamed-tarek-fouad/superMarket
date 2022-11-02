@@ -33,6 +33,7 @@ productRouter.patch(
   ProductsService.updateProduct
 );
 productRouter.get("/", ProductsService.allProducts);
+productRouter.delete("/", ProductsService.deleteProduct);
 productRouter.get("/byId", ProductsService.productById);
 
 export default productRouter;

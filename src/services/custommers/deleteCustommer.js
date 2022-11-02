@@ -11,7 +11,7 @@ export async function deleteCustommer(req, res, next) {
     const custommer = await prisma.custommers.delete({
       where: { id },
     });
-    return okResponse(res, "featched  custommer successfully", custommer);
+    return okResponse(res, "deleted  custommer successfully", custommer);
   } catch (err) {
     next(err);
   }

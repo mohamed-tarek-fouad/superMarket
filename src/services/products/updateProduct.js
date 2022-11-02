@@ -14,7 +14,7 @@ export async function updateProduct(req, res, next) {
       img = `/uploads/images/${req.file.filename}`;
     }
     const getProduct = await prisma.products.findUnique({
-      where: { id: parseInt(id) },
+      where: { id },
     });
     if (!getProduct) {
       return badRequestResponse(res, "this product does't exist");
@@ -32,7 +32,7 @@ export async function updateProduct(req, res, next) {
 
     const product = await prisma.products.update({
       where: {
-        id: parseInt(id),
+        id,
       },
       data: {
         name,

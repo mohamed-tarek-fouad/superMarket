@@ -11,7 +11,7 @@ export async function custommerById(req, res, next) {
     const custommer = await prisma.custommers.findFirst({
       where: { id },
       include: {
-        cart: true,
+        Cart: true,
       },
     });
     return okResponse(res, "featched  custommer successfully", custommer);

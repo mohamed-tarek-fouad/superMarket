@@ -10,7 +10,7 @@ export async function updateCustommer(req, res, next) {
     const { id } = req.headers;
     let { name, dept, payed, totalCost } = req.body;
     const getCustommer = await prisma.custommers.findUnique({
-      where: { id: parseInt(id) },
+      where: { id },
     });
     if (!getCustommer) {
       return badRequestResponse(res, "this custommer does't exist");
@@ -30,7 +30,7 @@ export async function updateCustommer(req, res, next) {
 
     const custommer = await prisma.custommers.update({
       where: {
-        id: parseInt(id),
+        id,
       },
       data: {
         name,
