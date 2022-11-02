@@ -17,8 +17,8 @@ custommerRouter.patch(
   custommersService.updateCustommer
 );
 custommerRouter.get("/", custommersService.allCustommers);
-custommerRouter.patch("/total", custommersService.total);
-custommerRouter.patch("/checkOut", custommersService.checkOut);
+custommerRouter.delete("/", custommersService.deleteCustommer);
+custommerRouter.post("/cart", custommersService.addToCart);
 custommerRouter.get("/byId", custommersService.custommerById);
 
 export default custommerRouter;

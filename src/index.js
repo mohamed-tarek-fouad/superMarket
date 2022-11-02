@@ -4,7 +4,6 @@ import { PrismaClient } from "@prisma/client";
 import errorHandler from "./helpers/middlewares/errorHandller.js";
 import products from "./controllers/products.controller.js";
 import custommers from "./controllers/custommers.controller.js";
-import cart from "./controllers/cart.controller.js";
 import cat from "./controllers/cat.controller.js";
 import { join } from "path";
 const prisma = new PrismaClient();
@@ -18,7 +17,6 @@ app.use("/uploads", express.static(join(process.cwd(), "uploads")));
 // -- Routes --
 app.use("/products", products);
 app.use("/custommers", custommers);
-app.use("/cart", cart);
 app.use("/cat", cat);
 app.use(errorHandler);
 

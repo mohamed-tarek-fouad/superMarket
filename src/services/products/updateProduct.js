@@ -8,13 +8,13 @@ import { prisma } from "../../index.js";
 export async function updateProduct(req, res, next) {
   try {
     const { id } = req.headers;
-    let { name, price, quantity, catId } = req.body;
+    let { name, price, catId } = req.body;
     let img;
     if (req.file) {
       img = `/uploads/images/${req.file.filename}`;
     }
     const getProduct = await prisma.products.findUnique({
-      where: { id: parseInt(id) },
+      where: { id },
     });
     if (!getProduct) {
       return badRequestResponse(res, "this product does't exist");
@@ -25,21 +25,18 @@ export async function updateProduct(req, res, next) {
     if (!catId) {
       name = getProduct.name;
     }
-    if (!quantity) {
-      quantity = getProduct.quantity;
-    }
+
     if (!price) {
       price = getProduct.price;
     }
 
     const product = await prisma.products.update({
       where: {
-        id: parseInt(id),
+        id,
       },
       data: {
         name,
         price,
-        quantity,
         img,
         catId,
       },

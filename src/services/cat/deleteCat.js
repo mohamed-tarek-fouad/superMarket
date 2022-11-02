@@ -7,7 +7,7 @@ import { prisma } from "../../index.js";
 
 export async function deleteCat(req, res, next) {
   try {
-    const { id } = req.body;
+    const { id } = req.headers;
     const cat = await prisma.categories.delete({
       where: {
         id,

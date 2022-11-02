@@ -7,13 +7,12 @@ import { prisma } from "../../index.js";
 
 export async function createProduct(req, res, next) {
   try {
-    const { name, price, quantity, catId } = req.body;
+    const { name, price, catId } = req.body;
     const img = `/uploads/images/${req.file.filename}`;
     const product = await prisma.products.create({
       data: {
         name,
         price,
-        quantity,
         img,
         catId,
       },

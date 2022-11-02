@@ -9,9 +9,9 @@ export async function productById(req, res, next) {
   try {
     const { id } = req.headers;
     const product = await prisma.products.findFirst({
-      where: { id: parseInt(id) },
+      where: { id },
       include: {
-        cat,
+        cat: true,
       },
     });
     return okResponse(res, "featched  product successfully", product);

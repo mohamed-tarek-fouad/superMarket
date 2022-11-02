@@ -8,9 +8,9 @@ import { prisma } from "../../index.js";
 export async function updateCustommer(req, res, next) {
   try {
     const { id } = req.headers;
-    let { name, dept } = req.body;
+    let { name, dept, payed, totalCost } = req.body;
     const getCustommer = await prisma.custommers.findUnique({
-      where: { id: parseInt(id) },
+      where: { id },
     });
     if (!getCustommer) {
       return badRequestResponse(res, "this custommer does't exist");
@@ -21,14 +21,22 @@ export async function updateCustommer(req, res, next) {
     if (!dept) {
       dept = getCustommer.dept;
     }
+    if (!totalCost) {
+      totalCost = getCustommer.totalCost;
+    }
+    if (!payed) {
+      payed = getCustommer.payed;
+    }
 
     const custommer = await prisma.custommers.update({
       where: {
-        id: parseInt(id),
+        id,
       },
       data: {
         name,
         dept,
+        payed,
+        totalCost,
       },
     });
 
