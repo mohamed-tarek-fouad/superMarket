@@ -9,7 +9,7 @@ export async function catById(req, res, next) {
   try {
     const { id } = req.headers;
     const category = await prisma.categories.findFirst({
-      where: { id: parseInt(id) },
+      where: { id },
       include: {
         products: true,
       },
