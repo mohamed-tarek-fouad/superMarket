@@ -13,8 +13,10 @@ export async function addToCart(req, res, next) {
         product,
         cost,
         custommerId,
+        date: new Date().toISOString().substring(0, 10),
       },
     });
+
     const getCustommer = await prisma.custommers.findUnique({
       where: {
         id: custommerId,

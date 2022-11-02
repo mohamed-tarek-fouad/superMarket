@@ -7,9 +7,9 @@ import { prisma } from "../../index.js";
 
 export async function productById(req, res, next) {
   try {
-    const { id } = req.headers;
-    const product = await prisma.products.findFirst({
-      where: { id },
+    const { name } = req.body;
+    const product = await prisma.products.findMany({
+      where: { name: { contains: name } },
       include: {
         cat: true,
       },

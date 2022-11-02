@@ -18,6 +18,7 @@ custommerRouter.patch(
 );
 custommerRouter.get("/", custommersService.allCustommers);
 custommerRouter.delete("/", custommersService.deleteCustommer);
+custommerRouter.delete("/cart", custommersService.deleteCart);
 custommerRouter.post("/cart", custommersService.addToCart);
 custommerRouter.get("/byId", custommersService.custommerById);
 

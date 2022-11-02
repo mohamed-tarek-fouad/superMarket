@@ -23,7 +23,6 @@ model Custommers {
   id        String @id @default(auto()) @map("_id") @db.ObjectId
   name      String
   dept      Float  @default(0)
-  payed     Float  @default(0)
   totlaCost Float  @default(0)
   Cart      Cart[]
 }
@@ -34,7 +33,7 @@ model Cart {
   cost        Float
   custommerId String     @db.ObjectId
   custommer   Custommers @relation(fields: [custommerId], references: [id])
-  date        DateTime   @default(now())
+  date        String
 }
 
 model Categories {
