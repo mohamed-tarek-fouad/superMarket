@@ -5,12 +5,8 @@
 	"description": "This is used for education purposes",
 	"main": "index.js",
 	"scripts": {
-		"start": "node src/index.js",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"lint": "eslint src --fix",
-		"prettier": "prettier --write src/**/*.js",
-		"generate": "prisma generate",
-		"migrate": "npm run generate && prisma migrate dev"
+		"start": "node src/index.js"
+
 	},
 	"author": "",
 	"license": "ISC",
